@@ -1,0 +1,258 @@
+<section class="page-title">
+    <div class="container">
+
+        <header>
+
+            <ul class="breadcrumb"><!-- breadcrumb -->
+                <li><a href="/">Inicio</a></li>
+                <li class="active">Generador de mappers</li>
+            </ul><!-- /breadcrumb -->
+
+            <h2><!-- Page Title -->
+                Generador de  <strong>mappers</strong>
+            </h2><!-- /Page Title -->
+
+        </header>
+
+    </div>			
+</section>
+
+<script>
+    $(document).ready(function () {
+        $('#tablas_generador').DataTable({
+            language: {
+                processing: "Procesando...",
+                search: "Buscar&nbsp;:",
+                lengthMenu: "_MENU_ registros por pagina",
+                info: "Mostrando _START_ de _END_ de un total de  _TOTAL_ registros",
+                infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                infoPostFix: "",
+                loadingRecords: "Cargando...",
+                zeroRecords: "Ningun registro coincide con la busqueda",
+                emptyTable: "No se encontraron registros",
+                paginate: {
+                    first: "Primera página",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultima página"
+                },
+                aria: {
+                    sortAscending: ": activer pour trier la colonne par ordre croissant",
+                    sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                }
+            }
+
+        });
+
+
+
+
+
+    });
+
+
+    function levantarModal(tabla) {
+        $("#model-generador").html("<h3>" + tabla + "</h3>");
+
+        $("#model-generador").dialog({
+            hide: {effect: "explode", duration: 1000},
+            title: "Generar mapper " + tabla,
+            width: "auto",
+            content: "lalala",
+        });
+    }
+
+
+    function procesarFiltrado(tabla) {
+        $.ajax({
+            url: "index/procesar-filtrado",
+            type: "POST",
+            dataType: "html",
+            data: {tabla: tabla},
+            success: function (data) {
+
+                $.ajax({
+                    url: "index",
+                    type: "POST",
+                    dataType: "html",
+                    success: function (html) {
+                        $("#contenedorTablaGenerador").html(html);
+                        toastr.success("Accion realizada con éxito");
+                    }
+                }
+                );
+            },
+            beforeSend: function () {
+                $("#botonGeneraTodo").append("<div id='cargando'><img src='../img/ajax-loader.gif'></img></div>");
+
+            }
+
+        });
+
+
+    }
+
+    function eliminaFiltrado(tabla) {
+        $.ajax({
+            url: "/generador/index/elimina-filtrado",
+            type: "POST",
+            dataType: "html",
+            data: {tabla: tabla},
+            success: function (data) {
+
+                $.ajax({
+                    url: "/generador/index",
+                    type: "POST",
+                    dataType: "html",
+                    success: function (html) {
+                        $("#contenedorTablaGenerador").html(html);
+                        toastr.success("Accion realizada con éxito");
+                    }
+                }
+                );
+            },
+            beforeSend: function () {
+                $("#botonGeneraTodo").append("<div id='cargando'><img src='../img/ajax-loader.gif'></img></div>");
+
+            }
+
+        });
+
+
+    }
+    function generarTodosMappers() {
+        $.ajax({
+            url: "/generador/index/procesar",
+            type: "POST",
+            dataType: "html",
+            success: function (html) {
+                $.ajax({
+                    url: "index",
+                    type: "POST",
+                    dataType: "html",
+                    success: function (html) {
+                        $("#contenedorTablaGenerador").html(html);
+                        toastr.success("Accion realizada con éxito");
+                    }
+                }
+                );
+            },
+            beforeSend: function () {
+                $("#botonGeneraTodo").append("<div id='cargando'><img src='../img/ajax-loader.gif'></img></div>");
+
+            }
+
+        });
+    }
+</script>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div id="contenedorTablaGenerador">
+                    <div id="botonGeneraTodo" class="text-align:left">
+
+                        <a onclick="generarTodosMappers()" type="button" class="btn btn-primary">Generar todos los mappers</a>
+
+                    </div>
+                    <br>
+                    <div class="alert alert-minimal alert-info nomargin">
+                        <button class="close" data-dismiss="alert">×</button>
+                        <p><i class="fa fa-info"></i> Al generar los mappers se sobreescribiran los mappers existentes, asegurese de guardar los métodos ya creados</p>
+                    </div>
+
+
+
+                    <br>					
+                    <div class ="table-responsive">
+                        <table id="tablas_generador" class="display" cellspacing="0" width="100%">
+                            <thead>
+                            <th>Tabla</th>
+                            <th>Nombre</th>
+                            <th>Factory</th>
+                            <th>Mapper</th>
+                            <th>Model</th>
+                            <th>Service</th>
+                            <th>Acciones</th>
+                            </thead>
+                            <tbody>
+
+                                <?php
+                                foreach ($this->tablas as $tabla) {
+                                    $nombre = explode("_", $tabla);
+                                    $nameTabla = "";
+                                    $ruta = getcwd() . '/module/Mappers/src/Mappers/';
+                                    $rutaFactory = $ruta . "Factory";
+                                    $rutaMapper = $ruta . "Mapper";
+                                    $rutaModel = $ruta . "Model";
+                                    $rutaService = $ruta . "Service";
+
+                                    if (count($nombre) > 1) {
+                                        foreach ($nombre as $n) {
+                                            $nameTabla .= ucfirst($n);
+                                        }
+                                    } else {
+                                        $nameTabla = ucfirst($nombre[0]);
+                                    }
+
+                                    echo "<tr>";
+                                    echo "<td>" . $tabla . "</td>";
+                                    echo "<td>" . $nameTabla . "</td>";
+
+                                    if (file_exists($rutaFactory . "/" . $nameTabla)) {
+                                        echo "<td style='text-align:center'><span class=\"label label-success\" style='font-weight:bold;text-align:center'>SI </span></td>";
+                                    } else {
+                                        echo "<td style='text-align:center'><span class=\"label label-danger\" style='font-weight:bold;text-align:center'>NO </span></td>";
+                                    }
+
+                                    if (file_exists($rutaMapper . "/" . $nameTabla)) {
+                                        echo "<td style='text-align:center'><span class=\"label label-success\" style='font-weight:bold;text-align:center'>SI </span></td>";
+                                    } else {
+                                        echo "<td style='text-align:center'><span class=\"label label-danger\" style='font-weight:bold;text-align:center'>NO </span></td>";
+                                    }
+
+                                    if (file_exists($rutaModel . "/" . $nameTabla)) {
+                                        echo "<td style='text-align:center'><span class=\"label label-success\" style='font-weight:bold;text-align:center'>SI </span></td>";
+                                    } else {
+                                        echo "<td style='text-align:center'><span class=\"label label-danger\" style='font-weight:bold;text-align:center'>NO </span></td>";
+                                    }
+
+                                    if (file_exists($rutaService . "/" . $nameTabla)) {
+                                        echo "<td style='text-align:center'><span class=\"label label-success\" style='font-weight:bold;text-align:center'>SI </span></td>";
+                                    } else {
+                                        echo "<td style='text-align:center'><span class=\"label label-danger\" style='font-weight:bold;text-align:center'>NO </span></td>";
+                                    }
+
+
+                                    echo "<td  style='text-align:center'>";
+                                    echo "<button type=\"button\" class=\"btn btn-default btn-xs\" title='Generar Mappers' onclick=\"procesarFiltrado('{$tabla}')\"><i class=\"fa fa-edit\"></i></button>&nbsp;";
+                                    echo "<button type=\"button\" class=\"btn btn-default btn-xs\" title='Ver Mappers' onclick=\"levantarModal('{$tabla}')\"><i class=\"fa fa-folder-open-o\"></i></button> &nbsp;";
+                                    echo "<button type=\"button\" class=\"btn btn-default btn-xs\" title='Borrar Mappers' onclick=\"eliminaFiltrado('{$tabla}')\"><i class=\"fa fa-trash-o\"></i></button>";
+
+
+                                    echo "</tr>";
+                                }
+                                ?>
+
+                            </tbody>
+                            <tfoot>
+                            <th>Tabla</th>
+                            <th>Nombre</th>
+                            <th>Factory</th>
+                            <th>Mapper</th>
+                            <th>Model</th>
+                            <th>Service</th>
+                            <th>Acciones</th>
+                            </tfoot>
+                        </table>
+                    </div> 
+                    <div id="model-generador" style="display:none" title="Generar mapper">
+                        <h1>Modal</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

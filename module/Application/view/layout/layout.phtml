@@ -1,0 +1,109 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <?php
+        // CSS
+        $this->headLink()
+                ->appendStylesheet($this->basePath('tienda/plugins/bootstrap/css/bootstrap.css'))
+                ->appendStylesheet($this->basePath('tienda/css/font-awesome.css'))
+                ->appendStylesheet($this->basePath('tienda/css/sky-forms.css'))
+                ->appendStylesheet($this->basePath('tienda/css/weather-icons.min.css'))
+                ->appendStylesheet($this->basePath('tienda/css/line-icons.css'))
+                ->appendStylesheet($this->basePath('tienda/plugins/owl-carousel/owl.pack.css'))
+                ->appendStylesheet($this->basePath('tienda/plugins/magnific-popup/magnific-popup.css'))
+                ->appendStylesheet($this->basePath('tienda/css/animate.css'))
+                ->appendStylesheet($this->basePath('tienda/css/flexslider.css'))
+                ->appendStylesheet($this->basePath('tienda/css/revolution-slider.css'))
+                ->appendStylesheet($this->basePath('tienda/css/layerslider.css'))
+                ->appendStylesheet($this->basePath('tienda/css/layout-shop.css'))
+                ->appendStylesheet($this->basePath('tienda/css/essentials.css'))
+                ->appendStylesheet($this->basePath('tienda/css/layout.css'));
+        
+        $this->headLink()->appendStylesheet($this->basePath('tienda/css/header-transparent.css'));
+        $estiloCabecera = "";
+        try {
+            if ($this->url() === "/") {
+//                    $this->headLink()->appendStylesheet($this->basePath('tienda/css/header-transparent.css'));
+            } else {
+//                   $this->headLink()->appendStylesheet($this->basePath('tienda/css/header-3.css'));
+                $estiloCabecera = "position:inherit !important";
+            }
+        } catch (Exception $exc) {
+            $estiloCabecera = "position:inherit !important";
+        }
+//            try {
+//                if($this->url() == "/"){
+//                    $this->headLink()->appendStylesheet($this->basePath('tienda/css/header-transparent.css'));
+//                }else{
+//                   $this->headLink()->appendStylesheet($this->basePath('tienda/css/header-3.css'));
+//                }
+//              
+//            } catch (Exception $exc) {
+////                echo $exc->getTraceAsString();
+//            }
+        $this->headLink()
+                ->appendStylesheet($this->basePath('tienda/css/color_scheme/darkblue.css'))
+//							->appendStylesheet($this->basePath('datatable/media/css/jquery.dataTables.css'))
+                ->appendStylesheet($this->basePath('datatable/media/css/dataTables.jqueryui.css'))
+                ->appendStylesheet($this->basePath('js/jquery-ui/jquery-ui.css'))
+                ->appendStylesheet($this->basePath('js/toastr/toastr.css'))
+                ->appendStylesheet($this->basePath('treeview/css/bootstrap-treeview.css'))
+                ->appendStylesheet($this->basePath('bootstrap-validation/dist/css/formValidation.css'))
+        ;
+
+
+        echo $this->headLink();
+        ?>
+        <?php
+        //JS
+        $this->headScript()
+                ->appendFile($this->basePath('tienda/plugins/modernizr.min.js'))
+                ->appendFile($this->basePath('tienda/plugins/jquery-2.1.3.min.js'))
+                ->appendFile($this->basePath('tienda/plugins/jquery.isotope.js'))
+                ->appendFile($this->basePath('tienda/plugins/masonry.js'))
+                ->appendFile($this->basePath('tienda/plugins/bootstrap/js/bootstrap.min.js'))
+                ->appendFile($this->basePath('tienda/plugins/magnific-popup/jquery.magnific-popup.min.js'))
+                ->appendFile($this->basePath('tienda/plugins/owl-carousel/owl.carousel.min.js'))
+                ->appendFile($this->basePath('tienda/plugins/knob/js/jquery.knob.js'))
+                ->appendFile($this->basePath('tienda/plugins/flexslider/jquery.flexslider-min.js'))
+                ->appendFile($this->basePath('tienda/plugins/revolution-slider/js/jquery.themepunch.tools.min.js'))
+                ->appendFile($this->basePath('tienda/plugins/revolution-slider/js/jquery.themepunch.revolution.min.js'))
+                ->appendFile($this->basePath('tienda/js/revolution_slider.js'))
+                ->appendFile($this->basePath('tienda/js/scripts.js'))
+                ->appendFile($this->basePath('datatable/media/js/jquery.dataTables.js'))
+//    						->appendFile($this->basePath('datatable/media/js/dataTables.bootstrap.js'))
+                ->appendFile($this->basePath('datatable/media/js/dataTables.jqueryui.js'))
+                ->appendFile($this->basePath('js/jquery-ui/jquery-ui.js'))
+                ->appendFile($this->basePath('js/toastr/toastr.js'))
+                ->appendFile($this->basePath('treeview/js/bootstrap-treeview.js'))
+//     						->appendFile($this->basePath('tienda/plugins/styleswitcher/styleswitcher.js'))
+                ->appendFile($this->basePath('tinymce-bootstrap-plugin/examples/tinymce/tinymce.min.js'))
+                ->appendFile($this->basePath('bootstrap-validation/dist/js/formValidation.js'))
+                ->appendFile($this->basePath('bootstrap-validation/dist/js/framework/bootstrap.js'))
+                ->appendFile($this->basePath('bootstrap-validation/dist/js/language/es_CL.js'))
+
+        ;
+        echo $this->headScript();
+        echo $this->inlineScript();
+        ?>
+       
+    </head>
+    <body>
+        <div class="container">
+            <?php echo $this->content; ?>
+            <hr>
+            <footer>
+                <p>&copy; 2015 - <?php echo date('Y') ?> NFServices <?php echo $this->translate('Todos los derechos reservados.') ?></p>
+            </footer>
+        </div> <!-- /container -->
+    </body>
+</html>

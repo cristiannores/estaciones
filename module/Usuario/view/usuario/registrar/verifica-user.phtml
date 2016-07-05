@@ -1,0 +1,45 @@
+<div class="container">
+    <section>
+        <div class="col-md-6 col-sm-6">
+            <blockquote>
+                Estimado <strong> <?php echo $this->nombre . " " . $this->apellido ?> </strong>, Gracias por registrarse en IPservice, dentro de unos minutos recibirà 
+                un correo con un link para verificar su cuenta <strong> <?php echo $this->correo; ?> </strong>, si no llega a sus bandeja de entrada favor revisar carpeta de Spam, este link es 
+                vàlido por 24 horas.
+              
+            <cite class="small" title="Equipo de Ipservice">Equipo de Ipservice</cite>
+            </blockquote>
+            <br>
+            <div class="alert alert-info fade in">
+                <div class="row">
+                    <div class="col-md-9 col-sm-9"><!-- left text -->
+                        <h4>Otras alternativas <strong> verifique su cuenta</strong></h4>
+                        <p>
+                            Puede verificar su cuenta a traves de Facebook o Gmail.
+                        </p>
+                    </div><!-- /left text -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="featured-box noborder"><!-- add .transparent for no background color -->
+                        <i class="fa fa-facebook"></i>
+                        <h4>Facebook</h4>
+                        <p>Verifique su cuenta a traves de Facebook.</p>
+                        <a class="btn btn-default" href="<?php echo $this->facebookUrl; ?>">Verificar</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="featured-box noborder"><!-- add .transparent for no background color -->
+                        <i class="fa fa-google"></i>
+                        <h4>Gmail</h4>
+                        <p>Verifique su cuenta a traves de Gmail.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>

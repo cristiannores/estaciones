@@ -1,0 +1,80 @@
+
+        
+        <div class="col-md-12 col-sm-12">
+            
+            <form action="/usuario/registrar/manual" method="post" class="" id="registroForm1">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Crea tu cuenta</div>
+                    <div class="panel-body">
+                        <div class="col-sm-12 col-md-6">
+                        <fieldset>								
+                            <div class="form-group">
+                                <label class="input">Correo electronico</label>
+                                <input name="email" class="form-control" id="email" required="" type="text" placeholder="Correo electronico">
+                            </div> 
+                            <div class="form-group">
+                                <label class="input">Contraseña</label>
+                                <input name="password"  class="form-control" id="pass" required="" type="password" placeholder="Contraseña">
+                            </div> 
+                            <div class="form-group">
+                                <label class="input">Confirma tu contraseña</label>
+                                <input name="confirmPassword"  class="form-control"  id="pass2" required="" type="password" placeholder="Confirma tu contraseña">
+                            </div> 
+                        </fieldset>
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group col col-md-6">
+                                    <label class="input">Nombre</label>
+                                    <input name="nombre" id="nombre" class="form-control" required="" type="text" placeholder="Nombre">
+                                </div>
+                                <div class="form-group col col-md-6">
+                                    <label class="input">Apellido</label>
+                                    <input name="apellido" id="apellido" class="form-control"  required="" type="text" placeholder="Apellido">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="terminos" id="terminos">  Acepto los terminos de uso
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="ofertas" id="ofertas" checked="checked"> Quiero recibir noticias y ofertas especiales
+                                </label>
+                            </div>
+                            <div id="captchaContainer"></div>
+                            <div id="captchaMessage"></div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                 <button type="submit" class="btn btn-primary" id="registrarBtn">Continuar</button>
+                            </div>
+                        </fieldset>
+                    </div>
+                     <div class="col-sm-12 col-md-6">
+                         <div class="row">
+                        <div class="col-sm-12">
+                            Registrate para iniciar sesion usando : 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a href="<?php echo $this->urlFacebook; ?>" class="btn btn-facebook btn-lg btn-block"><i class="fa fa-facebook"></i> Registrarme con Facebook</a>
+                                <a href="#" class="btn btn-google-plus btn-lg btn-block "><i class="fa fa-google-plus"></i> Registrarme con Google</a>
+                            </div>
+                        </div>
+                     </div>
+                    </div>
+                </div>  
+            </form>
+            
+        </div>
+        <div style="display:none">
+            <form action="/usuario/registrar/verifica-user" method="post" id="registroCorrecto" name="registroCorrecto">
+                <input type="hidden" name="v_nombre" id="v_nombre" value="">
+                <input type="hidden" name="v_apellido" id="v_apellido" value="">
+                <input type="hidden" name="v_correo" id="v_apellido" value="">
+            </form>
+        </div>
