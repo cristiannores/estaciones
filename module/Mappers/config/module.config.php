@@ -17,6 +17,21 @@ return array(
             // Tabla Usuario 
             'Mappers\Mapper\Usuario\ZendDbSqlMapper' => 'Mappers\Factory\Usuario\ZendDbSqlMapperFactory',
             'Mappers\Service\Usuario\UsuarioService' => 'Mappers\Factory\Usuario\UsuarioServiceFactory',
+            // Tabla Dominios 
+            'Mappers\Mapper\Dominios\ZendDbSqlMapper' => 'Mappers\Factory\Dominios\ZendDbSqlMapperFactory',
+            'Mappers\Service\Dominios\DominiosService' => 'Mappers\Factory\Dominios\DominiosServiceFactory',
+            // Tabla Estacion 
+            'Mappers\Mapper\Estacion\ZendDbSqlMapper' => 'Mappers\Factory\Estacion\ZendDbSqlMapperFactory',
+            'Mappers\Service\Estacion\EstacionService' => 'Mappers\Factory\Estacion\EstacionServiceFactory',
+            // Tabla EstacionUsuario 
+            'Mappers\Mapper\EstacionUsuario\ZendDbSqlMapper' => 'Mappers\Factory\EstacionUsuario\ZendDbSqlMapperFactory',
+            'Mappers\Service\EstacionUsuario\EstacionUsuarioService' => 'Mappers\Factory\EstacionUsuario\EstacionUsuarioServiceFactory',
+            // Tabla IndicadorEstacion 
+            'Mappers\Mapper\IndicadorEstacion\ZendDbSqlMapper' => 'Mappers\Factory\IndicadorEstacion\ZendDbSqlMapperFactory',
+            'Mappers\Service\IndicadorEstacion\IndicadorEstacionService' => 'Mappers\Factory\IndicadorEstacion\IndicadorEstacionServiceFactory',
+            // Tabla Indicadores 
+            'Mappers\Mapper\Indicadores\ZendDbSqlMapper' => 'Mappers\Factory\Indicadores\ZendDbSqlMapperFactory',
+            'Mappers\Service\Indicadores\IndicadoresService' => 'Mappers\Factory\Indicadores\IndicadoresServiceFactory',
             // Adaptador
             'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory'
         )

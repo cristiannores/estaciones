@@ -2,11 +2,15 @@
 <div class="panel panel-default">
     <div class="panel-heading">Lista de usuarios</div>
     <div class="panel-body">
+        <p>
+            <button class="btn btn-primary" id="btn-agregar-usuario"><i class="glyphicon glyphicon-plus  "></i> Agregar Usuario</button>
+        </p>
 <div class ="table-responsive table-bordered" >
      
     <table id="tabla_usuarios" class="table"> 
     <thead>
         <th>Nombre</th>
+        <th>Correo</th>
         <th>Tipo</th>
         <th>Habilitado</th>
         <th>Acciones</th>
@@ -24,13 +28,16 @@
             }
             echo "<tr>";
             echo "<td>$nombres</td>";
+            echo "<td>$user->correo</td>";
             echo "<td>". ($user->rol == 'Administrador')? "<td><span class='label label-danger'>$user->rol</span>":$user->rol  ."</td>";
             echo $habilitado;
             if($usuario["user"]->correo == $user->correo){
                 echo "<td></td>";
             }else{
-                echo "<td><button class='btn btn-xs'><i class='glyphicon glyphicon-pencil'></i></button> "
-                . "&nbsp; <button class='btn btn-xs'><i class='glyphicon glyphicon-list-alt'></i></button> "
+                $icon = ($user->habilitado == 1)?"glyphicon-hand-down":"glyphicon-hand-up";
+                echo "<td><button class='btn btn-xs' id='editar_usuario'><i class='glyphicon glyphicon-edit'></i></button> "
+                . "&nbsp; <button class='btn btn-xs' id='listar_estaciones'><i class='glyphicon glyphicon-list-alt'></i></button> "
+                . "&nbsp; <button class='btn btn-xs' id='habilitar_usuario'><i class='glyphicon $icon'></i></button> "
                         . "</td>";
             }
             echo "</tr>";
@@ -42,4 +49,22 @@
 </table>
  </div>
     </div>
+    <div class="panel-footer">
+        <section>
+            <strong>Acciones del listado </strong>
+        </section>
+        
+        <section>
+            <button class='btn btn-xs'><i class='glyphicon glyphicon-edit'></i></button>
+            Editar usuario 
+            <button class='btn btn-xs'><i class='glyphicon glyphicon-list-alt'></i></button>
+            Listar estaciones 
+            <button class='btn btn-xs'><i class='glyphicon glyphicon-hand-up'></i></button>
+            Habilitar usuario 
+            <button class='btn btn-xs'><i class='glyphicon glyphicon-hand-down'></i></button>
+            Deshabilitar usuario 
+        </section>
+    </div>
 </div>
+
+<div id="modal_usuario"></div>

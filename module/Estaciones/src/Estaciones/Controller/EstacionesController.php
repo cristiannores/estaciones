@@ -7,7 +7,7 @@ use Mappers\Service\Usuario\UsuarioService;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class UsuariosController extends AbstractActionController
+class EstacionesController extends AbstractActionController
 {
 
     protected $usuarioService = null;
@@ -23,32 +23,25 @@ class UsuariosController extends AbstractActionController
 
     public function indexAction()
     {    
-        $usuario = $this->usuarioService->listarUsuarios();
-        return new ViewModel(array("usuario" => $usuario));
+        return new ViewModel();
     }
     
-    public function agregarUsuarioAction(){
+    public function agregarEstacionAction(){
         
         $viewModel = new ViewModel();
         $viewModel->setTerminal(true);
         return $viewModel;
     }
     
-    public function listarEstacionesAction(){
+    
+    public function habilitarEstacionAction(){
         
         $viewModel = new ViewModel();
         $viewModel->setTerminal(true);
         return $viewModel;
     }
     
-    public function habilitarUsuarioAction(){
-        
-        $viewModel = new ViewModel();
-        $viewModel->setTerminal(true);
-        return $viewModel;
-    }
-    
-    public function EditarUsuarioAction(){
+    public function EditarEstacionAction(){
         
         $viewModel = new ViewModel();
         $viewModel->setTerminal(true);

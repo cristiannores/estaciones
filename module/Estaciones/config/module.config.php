@@ -29,6 +29,8 @@ return array(
             'Estaciones\Controller\Menu' => 'Estaciones\Factory\MenuControllerFactory',
             'Estaciones\Controller\Descargas' => 'Estaciones\Factory\DescargasControllerFactory',
             'Estaciones\Controller\Usuarios' => 'Estaciones\Factory\UsuariosControllerFactory',
+            'Estaciones\Controller\Estaciones' => 'Estaciones\Factory\EstacionesControllerFactory',
+            'Estaciones\Controller\Configuracion' => 'Estaciones\Factory\ConfiguracionControllerFactory',
         ),
     ),
      'service_manager' => array(

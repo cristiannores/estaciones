@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 $(document).ready(function () {
-  $('#tabla_usuarios').DataTable({
+  $('#tabla_estaciones').DataTable({
       language: {
           processing: "Procesando...",
           search: "Buscar&nbsp;:",
@@ -32,29 +32,26 @@ $(document).ready(function () {
 });
     
 //Capturo los eventos de el mantenedor de usuarios
-$("#editar_usuario").on("click",function(){
-    editarUsuario();
+$("#editar_estacion").on("click",function(){
+    editarEstacion();
 });
-$("#listar_estaciones").on("click",function(){
-    listarEstaciones();
-});
-$("#habilitar_usuario").on("click",function(){
-    habilitarUsuario();
+$("#habilitar_estacion").on("click",function(){
+    habilitarEstacion();
 })
-$("#btn-agregar-usuario").on("click",function(){
-    agregarUsuario();
+$("#btn-agregar-estacion").on("click",function(){
+    agregarEstacion();
 });
 
 
 // FUNCIONES MANTENEDOR 
 
 /**
- * Agrega un usuario 
+ * Agrega una estacion 
  * @returns ajax
  */
-function agregarUsuario(){
+function agregarEstacion(){
      $.ajax({
-        url: '/estaciones/usuarios/agregar-usuario',
+        url: '/estaciones/estaciones/agregar-estacion',
         type: 'POST',
         datatype: 'html',
         beforeSend: function (xhr) {
@@ -62,8 +59,8 @@ function agregarUsuario(){
          
         },
         success: function (resp) {
-            $("#modal_usuario").html(resp);   
-            $('#modal-agregar-usuario').modal();
+            $("#modal_estacion").html(resp);   
+            $('#modal-agregar-estacion').modal();
         },
         complete: function (jqXHR, textStatus) {
            
@@ -76,13 +73,14 @@ function agregarUsuario(){
         }
     });
 }
+
 /**
- * Lista las estaciones del usuario
+ * Habilito el estacion 
  * @returns ajax
  */
-function listarEstaciones(){
+function habilitarEstacion(){
     $.ajax({
-        url: '/estaciones/usuarios/listar-estaciones',
+        url: '/estaciones/estaciones/habilitar-estacion',
         type: 'POST',
         datatype: 'html',
         beforeSend: function (xhr) {
@@ -90,36 +88,8 @@ function listarEstaciones(){
          
         },
         success: function (resp) {
-            $("#modal_usuario").html(resp);   
-            $('#modal-listar-estaciones').modal();
-        },
-        complete: function (jqXHR, textStatus) {
-           
-        }
-        ,error: function (jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-            console.log("error");
-        }
-    });
-}
-/**
- * Habilito el usuario 
- * @returns ajax
- */
-function habilitarUsuario(){
-    $.ajax({
-        url: '/estaciones/usuarios/habilitar-usuario',
-        type: 'POST',
-        datatype: 'html',
-        beforeSend: function (xhr) {
-           
-         
-        },
-        success: function (resp) {
-            $("#modal_usuario").html(resp);   
-            $('#modal-habilitar-usuario').modal();
+            $("#modal_estacion").html(resp);   
+            $('#modal-habilitar-estacion').modal();
         },
         complete: function (jqXHR, textStatus) {
            
@@ -136,9 +106,9 @@ function habilitarUsuario(){
  * Edicion de usuario 
  * @returns ajax
  */
-function editarUsuario(){
+function editarEstacion(){
     $.ajax({
-        url: '/estaciones/usuarios/editar-usuario',
+        url: '/estaciones/estaciones/editar-estacion',
         type: 'POST',
         datatype: 'html',
         beforeSend: function (xhr) {
@@ -146,8 +116,8 @@ function editarUsuario(){
          
         },
         success: function (resp) {
-            $("#modal_usuario").html(resp);   
-            $('#modal-editar-usuario').modal();
+            $("#modal_estacion").html(resp);   
+            $('#modal-editar-estacion').modal();
         },
         complete: function (jqXHR, textStatus) {
            
